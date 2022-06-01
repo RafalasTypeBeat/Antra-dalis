@@ -39,4 +39,24 @@ double mokinys::vidurkis(vector<double> hw)
     return std::accumulate(hw.begin(), hw.end(), 0.0) / hw.size();
 }
 
+mokinys::mokinys(string name, string surename){
+    this->name = name;
+    this->surename = surename;
+}
 
+mokinys mokinys::operator=(const mokinys& fromMok) { // priskyrimo operatorius
+    // tikrina ar priskiriamas sau
+    if (&fromMok == this) return *this;
+
+    this->name = fromMok.name;
+    this->surename = fromMok.surename;
+    this->mediana = fromMok.mediana;
+
+    return *this;
+}
+
+mokinys::mokinys(const mokinys& fromMok){ // kopijavimo
+    this->name = fromMok.name;
+    this->surename = fromMok.surename;
+    this->mediana = fromMok.mediana;
+}

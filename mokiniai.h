@@ -15,11 +15,18 @@ class mokinys
     int egzam;
     double mediana;
   public:
-    mokinys() 
+    mokinys() //default konstruktorius
     {
       egzam = 0;
       mediana = 0;
     }
+    mokinys(const mokinys& fromMok); // copy konstruktorius
+
+    mokinys operator=(const mokinys& fromMok); // assign operatorius
+
+    ~mokinys(){}; // destruktorius
+
+    mokinys(string FName, string SName);
 
     string getName() const { return name; }
     void setName(string name) { this->name = name; } 
@@ -39,7 +46,6 @@ class mokinys
 
     void setMediana(double mediana) { this->mediana = mediana; }
     double getMediana() const { return mediana; }
-
     void IsvalykPazymius();
     static double medianaFunk(vector<double> hw);
     static double galutinis(double egz, const vector<double>& hw, double (*kriterijus)(vector<double>) = medianaFunk);
