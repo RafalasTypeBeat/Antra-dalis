@@ -12,8 +12,6 @@
 #include <sstream>
 #include "mokiniai.h"
 
-struct mokinys;
-
 using std::string;
 using std::cin;
 using std::cout;

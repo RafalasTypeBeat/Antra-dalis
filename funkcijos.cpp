@@ -202,13 +202,16 @@ void readAndSort(int FileSkc)//nuskaito is sugeneruotu failu ir sudeda i vectori
     stringstream pavadinimas;
     pavadinimas << "kursiokai" << i << ".txt"; //sukuria failo pavadinima
     ifstream in(pavadinimas.str());
+    if (!in){
+            cout<< "Failas neegzistuoja ! Patikrinkite faila ir bandykite is naujo."; break;
+        }
     int t = 0;
     while (readData(in, temp))//nuskaito faila i vektoriu
     {
         mok.push_back(temp);
         t++;
     }
-    sort(mok.begin(), mok.end(), compareName);
+    //sort(mok.begin(), mok.end(), compareName);
     in.close();
 
     auto stopRead = hrClock::now();

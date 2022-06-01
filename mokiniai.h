@@ -1,38 +1,49 @@
 #pragma once
-#include "funkcijos.h"
 #include <vector>
 #include <string>
+#include <stdexcept>
+#include <iostream>
+#include <algorithm>
+#include <numeric>
 using std::string;
 using std::vector;
+using std::sort;
+using std::cout;
+using std::vector;
 
-class mokinys
+class zmogus
 {
-  private:
+    protected:
     std::string name;
     std::string surename;
-    std::vector<double> hw;
-    int size;
-    int egzam;
-    double mediana;
-  public:
-    mokinys() //default konstruktorius
-    {
-      egzam = 0;
-      mediana = 0;
-    }
-    mokinys(const mokinys& fromMok); // copy konstruktorius
 
-    mokinys operator=(const mokinys& fromMok); // assign operatorius
-
-    ~mokinys(){}; // destruktorius
-
-    mokinys(string FName, string SName);
+    public:
 
     string getName() const { return name; }
     void setName(string name) { this->name = name; } 
 
     string getSurename() const { return surename; }
     void setSurename(string surename) { this->surename = surename; }
+    virtual void AbstractMemberFunction() = 0;
+};
+
+
+
+
+class mokinys : public zmogus
+{
+  private:
+    double mediana;
+    std::vector<double> hw;
+    int size;
+    int egzam;
+    
+  public:
+    mokinys() //default konstruktorius
+    {
+      egzam = 0;
+      mediana = 0;
+    }
 
     int getEgzam() const { return egzam; }
     void setEgzam(int egzam) { this->egzam = egzam; }
@@ -47,10 +58,15 @@ class mokinys
     void setMediana(double mediana) { this->mediana = mediana; }
     double getMediana() const { return mediana; }
     void IsvalykPazymius();
+
+    // ~mokinys(){}; // destruktorius
+    // mokinys(const mokinys& fromMok); // copy konstruktorius
+    // mokinys& operator=(const mokinys& fromMok); // assign operatorius
     static double medianaFunk(vector<double> hw);
     static double galutinis(double egz, const vector<double>& hw, double (*kriterijus)(vector<double>) = medianaFunk);
     static double galutinis(double egz, double hw);
     static double vidurkis(vector<double> hw);
+    virtual void AbstractMemberFunction() {};
 };
 
 
